@@ -1,0 +1,22 @@
+from xml.dom import minidom
+import xml.etree.ElementTree as et
+# lire le document XML
+doc = minidom.parse('user.xml')
+# Affichier le nom de l'élement enfant et le nom de noeud du fichier XML
+print(doc.nodeName)
+print(doc.firstChild.tagName)
+# Récupérer le nom de la balise avec la fonction getElementsByTagName et les attributs avec getAttribute
+elements = doc.getElementsByTagName('user')
+print(f'Nous avons {elements.length} élements')
+for i in elements:
+    print(i.getAttribute('data-id'))
+# Analyser un document XML en utilisant minidom, mais ElementTree fournit une façon Pythonic pour analyser un fichier XML
+# analyser un document XML
+my_tree = et.parse("user.xml")
+my_root = my_tree.getroot()
+print("Le premier élément enfant :", my_root[0].tag)
+for i in my_root[0]:
+    print("L'enfants du premier élément est ",i.tag)
+# Les attributs du premier élément enfant
+print ("L'attribut du premier élément est ", my_root[0].attrib)
+print ("Le text du premier élément est ", my_root[2].text)
